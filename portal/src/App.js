@@ -1,18 +1,11 @@
 import logo from './logo.svg';
-import './App.scss';
-import {getHost} from "./utils/getHost";
-
-const getAll = () => {
-  fetch("/emp/getall",{method:"GET"}).then(res=>res.json).then(res=>{
-    console.log("res", res);
-  })
-}
-
+import './App.css';
+import Login from "./component/Login"
 
 function App() {
   return (
     <div className="App">
-      {getAll()}
+     <Login />
     </div>
   );
 }

@@ -3,8 +3,18 @@ const mongoose = require('mongoose');
 var app = express();
 const router = require('./node/routes/emp');
 const path = require('path');
-const PORT = 9000;
+const PORT = 8000;
 const portalPath = "portal/build";
+const helmet = require("helmet");
+const cookieparser = require("cookie-parser");
+
+
+// allow the app to use cookieparser
+app.use(helmet());
+
+// allow the app to use cookieparser
+app.use(cookieparser());
+
 
 //Route
 app.use('/emp',router)
