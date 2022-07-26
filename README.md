@@ -1,4 +1,15 @@
 # node-crud-mongodb: This Respo will explain about CRUD Operation with NodeJS and Mongodb
+  ## Prequisite: 
+    npm install express
+    npm i body-parser
+    npm i mongoose
+    
+    
+     npm install
+     
+     npm start
+   
+   
   ## To Create employee : http://localhost:8000/emp/create
     Method:POST
     Request Body Parameter: 
