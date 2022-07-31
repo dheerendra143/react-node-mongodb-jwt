@@ -16,7 +16,7 @@ router.post('/create', validateToken, create)
 router.get('/getAll', validateToken, view)
 router.patch('/update', validateToken, update)
 router.delete('/delete/', validateToken, remove)
-router.post('/login/', checkUser, login)
+router.post('/login/', login)
 router.post('/logout/', validateToken, logout)
 
 module.exports = router

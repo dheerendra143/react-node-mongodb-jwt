@@ -12,9 +12,9 @@ function login(req, res, next) {
         } else {
           const completeToken = `bearer ${token}`;
           res.cookie(`user`, completeToken, {
-            maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+            maxAge: 1000 * 60 * 1, // would expire after 1 minutes
             // expires works the same as the maxAge
-            expires: new Date('07 12 2024'),
+            // expires: new Date('07 12 2024'),
             secure: true,
             httpOnly: true,
             sameSite: 'lax'

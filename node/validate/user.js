@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 function validateToken(req, res, next) {
     const bearer = req.cookies['user'];
     const SECRET_KEY = "62e0288a2f30fcf80aeaf41c";
-    
+    console.log("cookie", bearer);
     if (bearer) {
         const bearerToken = bearer.split(" ");
         const token = bearerToken[1];
