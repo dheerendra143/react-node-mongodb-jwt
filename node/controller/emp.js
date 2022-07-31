@@ -41,20 +41,20 @@ function remove(req, res, next) {
 }
 
 
-function login(req, res, next) {
-  Emp.find({ empName: 'dheeru' }).then((data) => {
-    console.log("cookie added")
-    res.cookie(`Cookie token name`, `encrypted cookie string Value`, {
-      maxAge: 6000,
-      // expires works the same as the maxAge
-      expires: new Date('07 12 2022'),
-      secure: true,
-      httpOnly: true,
-      sameSite: 'lax'
-    });
-    res.send(data);
-  })
-}
+// function login(req, res, next) {
+//   Emp.find({ empName: 'dheeru' }).then((data) => {
+//     console.log("cookie added")
+//     res.cookie(`Cookie token name`, `encrypted cookie string Value`, {
+//       maxAge: 6000,
+//       // expires works the same as the maxAge
+//       expires: new Date('07 12 2022'),
+//       secure: true,
+//       httpOnly: true,
+//       sameSite: 'lax'
+//     });
+//     res.send(data);
+//   })
+// }
 
 
 
@@ -62,5 +62,5 @@ module.exports.create = create;
 module.exports.view = view;
 module.exports.update = update;
 module.exports.remove = remove;
-module.exports.login = login;
+// module.exports.login = login;
 

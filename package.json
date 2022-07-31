@@ -1,20 +1,22 @@
 {
-  "name": "react-node-mongodb",
+  "name": "react-node-mongodb-jwt",
   "version": "1.0.0",
-  "description": "",
+  "description": "this app will explain about react Authentication with node , mongodb , JWT token with cookie",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["jwt", "JWT token with Cookie", "mongodb with React Authentication with JWT cookie"],
+  "author": "dheerendra singh",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
     "helmet": "^5.1.1",
-    "mongoose": "^6.4.7"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.7",
+    "nodemon": "^2.0.19"
   }
 }
