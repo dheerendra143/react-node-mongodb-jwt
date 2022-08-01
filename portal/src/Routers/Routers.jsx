@@ -6,12 +6,15 @@ import {
     Link,
 } from "react-router-dom";
 
-import compList from "./RouteList"
+import App from "./../App";
+import Create from "./../Component/User/Create"
+import Login from "./../Component/User/Login";
+import Menu from "./../Component/Sidebar/Menu";
 
 const Routers = () => {
-    const { App, Login, Create } = compList;
     return (
         <BrowserRouter>
+            <Menu/>
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="login" element={<Login />} />

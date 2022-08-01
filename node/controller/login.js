@@ -2,13 +2,17 @@ const Emp = require('../models/emp');
 const jwt = require('jsonwebtoken');
 
 function login(req, res, next) {
-    Emp.find({ empName: 'dheeru' }).then((data) => {
-        const response = data[0];
-        const SECRET_KEY = response.id;
-      
-      jwt.sign({response}, SECRET_KEY, (err, token)=>{
-        if(err) {
-            res.sendStatus(403);
+  const userMail = req.body.username;
+  const password = req.body.password;
+
+  Emp.find({ empEmail: userMail }).then((data) => {
+    if(data.length) {
+      const response = data[0];
+      const SECRET_KEY = response.id;
+
+      jwt.sign({ response }, SECRET_KEY, (err, token) => {
+        if (err) {
+          res.status(403).send("Invalid credential");
         } else {
           const completeToken = `bearer ${token}`;
           res.cookie(`user`, completeToken, {
@@ -19,12 +23,14 @@ function login(req, res, next) {
             httpOnly: true,
             sameSite: 'lax'
           });
-            res.json({token});
+          res.json({ token });
         }
 
       })
-      
-    })
-  }
+    } else {
+      res.status(403).json({status: 403,msg:"Invalid credential"});
+    }
+  })
+}
 
-  module.exports.login = login;
+module.exports.login = login;

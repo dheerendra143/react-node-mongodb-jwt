@@ -2,24 +2,30 @@ const Emp = require('../models/emp');
 // const mongoose = require('mongoose')
 
 function create(req, res, next) {
-  let empName = req.body.empName;
-  let empEmail = req.body.empEmail;
-  let empMobile = req.body.empMobile;
-  let empPassword = req.body.empPassword;
+  let empName = req.body.userName;
+  let empEmail = req.body.userEmail;
+  let empMobile = req.body.userContact;
+  let empPassword = req.body.userPass;
+ 
   let emp = new Emp({
     empName,
     empEmail,
     empMobile,
     empPassword,
   })
+  
   emp.save().then((data) => {
-    res.send(data)
+    res.status(200).send(data)
+  }, (err)=>{
+    res.status(403).json({status: 403, msg:err});
   })
 };
 
 function view(req, res, next) {
   Emp.find({}).then((data) => {
     res.send(data)
+  }, (err)=>{
+    res.status(403).json({status: 403, msg:err});
   })
 };
 
@@ -29,6 +35,8 @@ function update(req, res, next) {
     if (!emp) return res.status(400).send({ error: "Problem with Updating the Employee Not Found in recored " })
 
     res.send({ success: `${emp.empName} Updation successfully` });
+  }, (err)=>{
+    res.status(403).json({status: 403, msg:err});
   })
 };
 
@@ -39,24 +47,10 @@ function remove(req, res, next) {
     if (!emp) return res.status(400).send({ error: "Problem with Deleting the   Employee Not Found in recored " })
 
     res.send({ success: `${emp.empName} Employee deleted successfully` })
+  }, (err)=>{
+    res.status(403).json({status: 403, msg:err});
   })
 }
-
-
-// function login(req, res, next) {
-//   Emp.find({ empName: 'dheeru' }).then((data) => {
-//     console.log("cookie added")
-//     res.cookie(`Cookie token name`, `encrypted cookie string Value`, {
-//       maxAge: 6000,
-//       // expires works the same as the maxAge
-//       expires: new Date('07 12 2022'),
-//       secure: true,
-//       httpOnly: true,
-//       sameSite: 'lax'
-//     });
-//     res.send(data);
-//   })
-// }
 
 
 

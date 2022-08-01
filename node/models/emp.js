@@ -19,8 +19,8 @@ const empSchema = new mongoose.Schema({
    },
    dateCreated: {
     type: Date,
-    default: Date.now,
-    required: false
+    required: false,
+    default: Date.now
    },
 });
 

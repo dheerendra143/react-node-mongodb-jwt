@@ -1,38 +1,41 @@
 import react from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Create from "./Create";
+import { Link } from "react-router-dom";
+import { fetchApi } from "./../../Utils/Services/__fetch";
 
 const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("dheeru@gmail.com");
+    const [password, setPassword] = useState("admin@123");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const data = JSON.stringify({ username: username, password: password })
-        fetch("emp/login", { method: "POST", body: data }).then(res => res.json()).then(res => {
-            console.log("success", res);
-        }, err => {
-            console.log("error", err);
+        const data = { username: username, password: password };
+        const response = fetchApi("POST", "/emp/login", data);
+        response.then(sucess => {
+            console.log("success", sucess)
+        }, error => {
+            console.log("error", error)
         })
     }
 
     const handleReset = (e) => {
         setUsername("");
-        setPassword();
+        setPassword("");
     }
 
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
             <section>
                 <label>Username</label>
-                <input value={username} onChange={(e)=>setUsername(e.value)} type={"email"}  required/>
+                <input value={username} onChange={(e) => setUsername(e.value)} type={"email"} required />
             </section>
             <section>
                 <label>Username</label>
-                <input value={password} onChange={(e)=>setPassword(e.value)} type={"password"} required/>
+                <input value={password} onChange={(e) => setPassword(e.value)} type={"password"} required />
             </section>
             <section>
+                <Link to="/addUser"> Add New User</Link>
                 <Button variant="primary" size="sm" type='reset' onClick={(e) => handleReset()}>Reset</Button>
                 <Button variant="primary" size="sm" type='submit'>Login</Button>
             </section>
