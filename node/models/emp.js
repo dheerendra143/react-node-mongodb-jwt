@@ -13,6 +13,15 @@ const empSchema = new mongoose.Schema({
    type: String,
    required: true
   },
+  empPassword: {
+    type: String,
+    required: true
+   },
+   dateCreated: {
+    type: Date,
+    default: Date.now,
+    required: false
+   },
 });
 
 module.exports = mongoose.model('Emp', empSchema);

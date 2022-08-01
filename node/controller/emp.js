@@ -5,10 +5,12 @@ function create(req, res, next) {
   let empName = req.body.empName;
   let empEmail = req.body.empEmail;
   let empMobile = req.body.empMobile;
+  let empPassword = req.body.empPassword;
   let emp = new Emp({
     empName,
     empEmail,
-    empMobile
+    empMobile,
+    empPassword,
   })
   emp.save().then((data) => {
     res.send(data)
