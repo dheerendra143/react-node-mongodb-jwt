@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
+const SECRET_KEY = "62e0288a2f30fcf80aeaf41c";
+const Emp = require('../models/emp');
+const SESSION_TIME = 2 ;//Minutes
 
 function validateToken(req, res, next) {
     const bearer = req.cookies['user'];
-    const SECRET_KEY = "62e0288a2f30fcf80aeaf41c";
     console.log("cookie", bearer);
     if (bearer) {
         const bearerToken = bearer.split(" ");
@@ -31,5 +33,19 @@ function checkUser(req, res, next) {
     }
 }
 
+function getActiveUserInfo(req, res, next) {
+    console.log("hello")
+    const bearer = req.cookies['user'];
+    Emp.find({ id: SECRET_KEY }).then((data) => {
+        if (data.length) {
+            const response = { session: SESSION_TIME, name: data[0].empName, email: data[0].empEmail, contact: data[0].empMobile };
+            res.status(200).json({ status: 200, ...response });
+        } else {
+            res.status(403).json({ status: 403, msg: "Invalid credential" });
+        }
+    })
+}
+
 module.exports.validateToken = validateToken;
 module.exports.checkUser = checkUser;
+module.exports.getActiveUserInfo = getActiveUserInfo;

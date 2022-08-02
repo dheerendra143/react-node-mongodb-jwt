@@ -25,7 +25,7 @@ app.use(cookieparser());
 app.use('/emp',router)  
 
 app.use(express.static(path.join(__dirname, portalPath)));
-app.get('/', function (req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, portalPath, 'index.html'));
 });
 
