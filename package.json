@@ -7,7 +7,11 @@
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["jwt", "JWT token with Cookie", "mongodb with React Authentication with JWT cookie"],
+  "keywords": [
+    "jwt",
+    "JWT token with Cookie",
+    "mongodb with React Authentication with JWT cookie"
+  ],
   "author": "dheerendra singh",
   "license": "ISC",
   "dependencies": {
@@ -18,5 +22,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.7",
     "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "redux": "^4.2.0"
   }
 }

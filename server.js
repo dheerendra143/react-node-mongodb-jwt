@@ -7,7 +7,12 @@ const PORT = 8000;
 const portalPath = "portal/build";
 const helmet = require("helmet");
 const cookieparser = require("cookie-parser");
+const bodyparser = require('body-parser');
 
+
+// allow user to send request parameter
+//app.use(bodyparser.urlencoded({extended:false}))
+app.use(bodyparser.json())
 
 // allow the app to use cookieparser
 app.use(helmet());
@@ -20,7 +25,7 @@ app.use(cookieparser());
 app.use('/emp',router)  
 
 app.use(express.static(path.join(__dirname, portalPath)));
-app.get('/', function (req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, portalPath, 'index.html'));
 });
 
