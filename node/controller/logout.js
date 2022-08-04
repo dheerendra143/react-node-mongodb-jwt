@@ -3,8 +3,10 @@ const jwt = require('jsonwebtoken');
 
 
 function logout(req, res, next) {
+  
   res.clearCookie("user");
-  res.json({ msg: "user logged out succesfully" })
+  req.session.destroy();
+  res.status(200).json({ msg: `user logged out succesfully ${ req.session}` })
 
 }
 

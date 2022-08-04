@@ -2,17 +2,20 @@ import logo from './logo.svg';
 import './App.scss';
 import Landing from "./Component/Landing/Landing";
 import { connect } from "react-redux";
-import rotateAction from "./Redux/actions/rotateAction";
 import { useEffect } from 'react';
 import {fetchApi} from "./Utils/Services/__fetch";
-import { singInAction } from "./Redux/actions/userAction";
+import { signInAction, signOutAction } from "./Redux/Actions/userAction";
+import {globalState} from "./Redux/globalState";
 
-
-function App({isLoggedin, rotating, singInAction, rotateAction}) {
+function App({isLoggedin, signInAction, signOutAction}) {
   useEffect(()=>{
     if(!isLoggedin) {
     fetchApi("GET", "emp/checkUser").then(sucess=>{
-      singInAction({ isLoggedin: true, userDetails: { session: sucess.session, name: sucess.name, email: sucess.email, contact: sucess.contact } })
+      if(sucess.status === 403) {
+        signOutAction(globalState);
+      } else {
+        signInAction({ isLoggedin: true, userDetails: { session: sucess.session, name: sucess.name, email: sucess.email, contact: sucess.contact } });
+      }
     })
   }
   },[]);
@@ -21,18 +24,6 @@ function App({isLoggedin, rotating, singInAction, rotateAction}) {
 
   return (
     <div className="App">
-      {rotating? "true": "false"}
-      <img
-        src={logo}
-        className={
-          "App-logo" +
-          (rotating ? "" : " App-logo-paused")
-        }
-        alt="logo"
-        onClick={
-          () => rotateAction(!rotating)
-        }
-      />
       <Landing />
     </div>
   );
@@ -42,8 +33,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  singInAction: (payload) => dispatch(singInAction(payload)),
-  rotateAction: (payload) => dispatch(rotateAction(payload))
+  signInAction: (payload) => dispatch(signInAction(payload)),
+  signOutAction: (payload) => dispatch(signOutAction(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import userReducer from "./reducers/userReducer";
+import userReducer from "./Reducers/userReducer";
 import { globalState } from "./globalState";
 
 const ReactReduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();

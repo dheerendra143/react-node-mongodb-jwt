@@ -17,15 +17,16 @@ function create(req, res, next) {
   emp.save().then((data) => {
     res.status(200).send(data)
   }, (err)=>{
-    res.status(403).json({status: 403, msg:err});
+    res.status(200).json({status: 403, msg:err});
   })
 };
 
 function view(req, res, next) {
+  console.log("coocie", req.session);
   Emp.find({}).then((data) => {
     res.send(data)
   }, (err)=>{
-    res.status(403).json({status: 403, msg:err});
+    res.status(200).json({status: 403, msg:err});
   })
 };
 
@@ -36,7 +37,7 @@ function update(req, res, next) {
 
     res.send({ success: `${emp.empName} Updation successfully` });
   }, (err)=>{
-    res.status(403).json({status: 403, msg:err});
+    res.status(200).json({status: 403, msg:err});
   })
 };
 
@@ -48,7 +49,7 @@ function remove(req, res, next) {
 
     res.send({ success: `${emp.empName} Employee deleted successfully` })
   }, (err)=>{
-    res.status(403).json({status: 403, msg:err});
+    res.status(200).json({status: 403, msg:err});
   })
 }
 

@@ -1,15 +1,15 @@
-const singInAction = (payload) => {
+const signInAction = (payload) => {
   return {
     type: "signIn",
     payload
   }
 }
 
-const singOutAction = (payload) => {
+const signOutAction = (payload) => {
   return {
     type: "signOut",
     payload
   }
 }
 
-export { singInAction, singOutAction };
+export { signInAction, signOutAction };

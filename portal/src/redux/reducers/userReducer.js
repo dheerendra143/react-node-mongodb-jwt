@@ -1,5 +1,5 @@
 
-import { globalState } from "./../globalState";
+import { globalState } from "../globalState";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 const userReducer = (state = globalState, action) => {
